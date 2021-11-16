@@ -17,6 +17,8 @@ export class AppComponent {
     conditions: '',
     season: '',
   }
+  plants = []
+
 submitted = false;
   onSubmit(){
     this.submitted = true;
@@ -25,8 +27,12 @@ submitted = false;
     this.plant.weeks = this.toPlantForm.value.weeks;
     this.plant.conditions = this.toPlantForm.value.conditions;
     this.plant.season = this.toPlantForm.value.season;
+
+    this.plants.push(this.plant);
     
     this.toPlantForm.reset();
     console.log(this.toPlantForm);
+
   }
+
 }
