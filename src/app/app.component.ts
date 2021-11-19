@@ -21,15 +21,18 @@ export class AppComponent {
 
 submitted = false;
   onSubmit(){
+    console.log(this.plants[0]);
     this.submitted = true;
-    this.plant.seedname = this.toPlantForm.value.seedname;
-    this.plant.amount = this.toPlantForm.value.amount;
-    this.plant.weeks = this.toPlantForm.value.weeks;
-    this.plant.conditions = this.toPlantForm.value.conditions;
-    this.plant.season = this.toPlantForm.value.season;
+    const plant: any = {}
+      plant.seedname = this.toPlantForm.value.seedname;
+      plant.amount = this.toPlantForm.value.amount;
+      plant.weeks = this.toPlantForm.value.weeks;
+      plant.conditions = this.toPlantForm.value.conditions;
+      plant.season = this.toPlantForm.value.season;
 
-    this.plants.push(this.plant);
-    
+    this.plants.push(plant);
+    console.log(this.plants);
+
     this.toPlantForm.reset();
     console.log(this.toPlantForm);
 

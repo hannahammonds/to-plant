@@ -61,19 +61,34 @@
      </div>
     <button class="btn btn-success"
             type="submit"
-            [disabled]="!f.valid">Submit</button>
+            [disabled]="!f.valid">Add</button>
   </form>
 </div>
 <div class="container" *ngIf="submitted">
-  <div class="col.xs-12">
-    <h4>You added:</h4>
-    <p>Seed Name: {{plant.seedname}}</p>
-    <p>Amount to plant: {{plant.amount}}</p>
-    <p>Weeks to Maturity: {{plant.weeks}}</p>
-    <p>Ideal Growing Conditions: {{plant.conditions}}</p>
-    <p>Ideal Growing Season: {{plant.season}}</p>
+  <h4>You added:</h4>
+  <div *ngFor="let p of plants">
+  <div class="row">
+    <div class="col-md-3">
+      <p>Seed Name: {{p.seedname}}</p>
+    </div>
+    <div class="col-md-2">
+      <p>Amount: {{p.amount}}</p>
+    </div>
+    <div class="col-md-2">
+      <p>Maturity: {{p.weeks}}</p>
+    </div>
+    <div class="col-md-2">
+      <p>Conditions: {{p.conditions}}</p>
+    </div>
+    <div class="col-md-2">
+      <p>Season: {{p.season}}</p>
+    </div>
+  </div>
+  <div class="col-md-1">
+  <button type="button" class="btn btn-danger btn-sm">Delete</button>
   </div>
 </div>
-<div *ngFor=[plants]>To Plant:</div>
+</div>
+
 
 
