@@ -1,1 +1,106 @@
-<p>to-plant works!</p>
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="form-group">
+      <label>Seed Name:</label>
+      <input
+        type="text"
+        id="seedname"
+        class="form-control"
+        ngModel
+        name="seedname"
+        required
+        seedname
+      />
+    </div>
+    <div class="form-group">
+      <label>Amount to Plant:</label>
+      <input
+        type="number"
+        id="amount"
+        class="form-control"
+        ngModel
+        name="amount"
+        required
+        amount
+      />
+    </div>
+    <div class="form-group">
+      <label>Weeks to Maturity:</label>
+      <input
+        type="number"
+        id="weeks"
+        class="form-control"
+        ngModel
+        name="weeks"
+      />
+    </div>
+    <div class="form-group">
+      <label>Ideal Growing Conditions:</label>
+      <input
+        type="text"
+        id="conditions"
+        class="form-control"
+        ngModel
+        name="conditions"
+        required
+        conditions
+      />
+    </div>
+    <div class="form-group">
+      <label for="season">Ideal Growing Season:</label>
+      <select
+        id="season"
+        class="form-control"
+        [ngModel]="defaultSeason"
+        name="season"
+      >
+        <option value="spring">Spring</option>
+        <option value="summer">Summer</option>
+        <option value="fall">Fall</option>
+        <option value="winter">Winter</option>
+      </select>
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="!f.valid">
+      Add
+    </button>
+  </form>
+  <br />
+  <div>
+    <button class="btn btn-dark" (click)="onClear()">Clear All</button>
+  </div>
+</div>
+
+<div class="container" *ngIf="plants.length != 0">
+  <h4>Your List:</h4>
+  <div>
+    <p>Got something in the ground? Hover over the seed name until a pointer appears and click to move it to your "Has Been Planted List" </p>
+  </div>
+  <div *ngFor="let p of plants; let i = index">
+    <div class="row">
+      <div class="col-md-3">
+        <p style="cursor:pointer" (click)="onMove(i)">Seed Name: {{ p.seedname }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>Amount: {{ p.amount }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>Maturity: {{ p.weeks }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>Conditions: {{ p.conditions }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>Season: {{ p.season }}</p>
+      </div>
+      <div class="col-md-1">
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="onDelete(i)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
