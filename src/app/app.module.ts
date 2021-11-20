@@ -4,10 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PlantedComponent } from './planted/planted.component';
+import { ToPlantComponent } from './to-plant/to-plant.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlantedComponent,
+    ToPlantComponent
   ],
   imports: [
     BrowserModule,
