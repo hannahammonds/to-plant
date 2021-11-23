@@ -75,31 +75,44 @@
   <div>
     <p>Got something in the ground? Hover over the seed name until a pointer appears and click to move it to your "Has Been Planted List" </p>
   </div>
+  <div class="row">
+    <div class="col-md-3">
+      <p>Seed Name:</p>
+    </div>
+    <div class="col-md-2">
+      <p>Amount:</p>
+    </div>
+    <div class="col-md-2">
+      <p>Maturity:</p>
+    </div>
+    <div class="col-md-2">
+      <p>Conditions:</p>
+    </div>
+    <div class="col-md-2">
+      <p>Season:</p>
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
   <div *ngFor="let p of plants; let i = index">
     <div class="row">
       <div class="col-md-3">
-        <p style="cursor:pointer" (click)="onMove(i)">Seed Name: {{ p.seedname }}</p>
+        <p style="cursor:pointer" (click)="onMove(i)">{{ p.seedname }}</p>
       </div>
       <div class="col-md-2">
-        <p>Amount: {{ p.amount }}</p>
+        <p>{{ p.amount }}</p>
       </div>
       <div class="col-md-2">
-        <p>Maturity: {{ p.weeks }}</p>
+        <p>{{ p.weeks }}</p>
       </div>
       <div class="col-md-2">
-        <p>Conditions: {{ p.conditions }}</p>
+        <p>{{ p.conditions }}</p>
       </div>
       <div class="col-md-2">
-        <p>Season: {{ p.season }}</p>
+        <p>{{ p.season }}</p>
       </div>
       <div class="col-md-1">
-        <button
-          type="button"
-          class="btn btn-danger btn-sm"
-          (click)="onDelete(i)"
-        >
-          Delete
-        </button>
+        <button type="button" class="btn btn-danger btn-small" (click)="onDelete(i)">Delete</button>
       </div>
     </div>
   </div>
