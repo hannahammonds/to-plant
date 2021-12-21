@@ -8,12 +8,16 @@ import { AppComponent } from './app.component';
 import { PlantService } from './plant.service';
 import { PlantedComponent } from './planted/planted.component';
 import { ToPlantComponent } from './to-plant/to-plant.component';
+import { AuthComponent } from './auth/auth.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlantedComponent,
-    ToPlantComponent
+    ToPlantComponent,
+    AuthComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
