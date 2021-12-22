@@ -1,9 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: green">
   <a class="navbar-brand" routerLink="/" href="#">Plant App</a>
     <div class="navbar-nav">
-      <a class="nav-link active" href="#" routerLink="/toPlant">To Be Planted <span class="sr-only">(current)</span></a>
-      <a class="nav-link active" href="#" routerLink="/planted">Has Been Planted</a>
-      <a class="nav-link active" href="#" routerLink="/auth">Login</a>
+      <li class="nav-item" *ngIf="isAuthenticated">
+        <a class="nav-link active" routerLink="/toPlant" routerLinkActive="active">To Be Planted <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthenticated">
+      <a class="nav-link active" routerLink="/planted" routerLinkActive="active">Has Been Planted</a>
+    </li>
+    <li class="nav-link" *ngIf="!isAuthenticated">
+      <a class="nav-link active" routerLink="/auth" routerLinkActive="active">Login</a>
+    </li>
+      <li class="nav-item" *ngIf="isAuthenticated">
+      <a class="nav-link active" routerLink="/auth" routerLinkActive="active">Logout</a>
+    </li>
     </div>
 </nav>
 <div class="container">
