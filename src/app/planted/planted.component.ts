@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PlantService } from '../plant.service';
 
@@ -10,18 +10,19 @@ import { PlantService } from '../plant.service';
 
 export class PlantedComponent implements OnInit {
   hasBeenPlanted = [];
+  private plantSub: Subscription
 
   constructor(private plantService: PlantService) {
-
-   }
+  }
 
   ngOnInit() {
-
     this.hasBeenPlanted = this.plantService.getPlanted()
     this.plantService.plantedChanged.subscribe(newPlants => {
       this.hasBeenPlanted = newPlants
     });
   }
+
+
 
 }
 

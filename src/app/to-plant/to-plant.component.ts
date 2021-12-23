@@ -23,7 +23,6 @@ export class ToPlantComponent implements OnInit {
   //   seedname: '',
   //   amount: '',
   //   weeks: '',
-  //   conditions: '',
   //   season: '',
   //   planted: false,
   // };
@@ -32,7 +31,6 @@ export class ToPlantComponent implements OnInit {
   //     seedname: 'broccoli',
   //     amount: '10',
   //     weeks: '10',
-  //     conditions: 'cool',
   //     season: 'Spring',
   //     planted: false,
   //   },
@@ -40,7 +38,6 @@ export class ToPlantComponent implements OnInit {
   //     seedname: 'tomato',
   //     amount: '10',
   //     weeks: '20',
-  //     conditions: 'hot',
   //     season: 'Summer',
   //     planted: false,
   //   },
@@ -48,7 +45,6 @@ export class ToPlantComponent implements OnInit {
   //     seedname: 'pumpkin',
   //     amount: '10',
   //     weeks: '30',
-  //     conditions: 'hot',
   //     season: 'Fall',
   //     planted: false,
   //   },
@@ -62,28 +58,21 @@ export class ToPlantComponent implements OnInit {
     plant.seedname = this.toPlantForm.value.seedname;
     plant.amount = this.toPlantForm.value.amount;
     plant.weeks = this.toPlantForm.value.weeks;
-    plant.conditions = this.toPlantForm.value.conditions;
     plant.season = this.toPlantForm.value.season;
-    // {seedname: plant.seedname,.....planted:false}
     this.plantService.onPlant({
       seedname: plant.seedname,
       amount: plant.amount,
       weeks: plant.weeks,
-      conditions: plant.conditions,
       season: plant.season,
       planted: false,
     });
-    console.log(this.plants);
-
     this.toPlantForm.reset();
-    console.log(this.toPlantForm);
   }
 
   onMove(i) {
     let plant = this.plants[i];
     plant.planted = true;
-    console.log("planted", plant)
-    this.plantService.onPlant(plant);
+    this.plantService.onPlanted(plant);
     this.onDelete(i);
   }
 
