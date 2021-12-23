@@ -7,7 +7,7 @@ import { ToPlantComponent } from './to-plant/to-plant.component';
 
 const routes: Routes = [
   { path: 'planted', component: PlantedComponent },
-  { path: 'toPlant', component: ToPlantComponent },
+  { path: 'to-plant', component: ToPlantComponent },
   { path: 'nav-bar', component: NavBarComponent },
   { path: 'auth', component: AuthComponent },
 ];

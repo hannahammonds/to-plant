@@ -38,8 +38,8 @@ export class AuthComponent implements OnInit {
         (resData) => {
           console.log(resData)
           this.router.navigate(['/to-plant']);
-        },
-        (error) => {
+        },(error) => {
+          console.log(error);
           this.error = "An error occured!";
         }
       );

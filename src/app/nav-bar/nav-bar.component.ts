@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { DataStorageService } from '../data-storage.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,6 +13,7 @@ export class NavBarComponent implements OnInit {
   isAuthenticated = false;
   private userSub: Subscription;
   constructor(
+    private dataStorageService: DataStorageService,
     private authService: AuthService
   ) { }
 
@@ -19,6 +21,14 @@ export class NavBarComponent implements OnInit {
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });
+  }
+
+  onSaveData() {
+    this.dataStorageService.onPostPlant();
+  }
+
+  onFetchData() {
+    this.dataStorageService.fetchPlants()
   }
 
   ngOnDestroy() {

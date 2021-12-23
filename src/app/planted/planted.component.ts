@@ -16,7 +16,11 @@ export class PlantedComponent implements OnInit {
    }
 
   ngOnInit() {
+
     this.hasBeenPlanted = this.plantService.getPlanted()
+    this.plantService.plantedChanged.subscribe(newPlants => {
+      this.hasBeenPlanted = newPlants
+    });
   }
 
 }
