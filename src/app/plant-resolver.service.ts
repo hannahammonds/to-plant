@@ -18,6 +18,6 @@ export class PlantResolverService implements Resolve<Plant[]> {
       } else {
         return plants
       }
-      return this.dataStorageService.fetchBooks();
+      return this.dataStorageService.fetchPlants();
     }
 }
