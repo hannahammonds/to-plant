@@ -32,7 +32,6 @@ export class PlantService {
     return this.planted.slice();
   }
 
-  //to-plant to planted
   onPlant(plant) {
     this.toPlant.push(plant);
     this.toPlantChanged.next(this.toPlant.slice());

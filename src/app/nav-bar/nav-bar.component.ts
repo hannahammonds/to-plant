@@ -28,7 +28,7 @@ export class NavBarComponent implements OnInit {
   }
 
   onFetchData() {
-    this.dataStorageService.fetchPlants()
+    this.dataStorageService.fetchPlants().subscribe();
   }
 
   ngOnDestroy() {
