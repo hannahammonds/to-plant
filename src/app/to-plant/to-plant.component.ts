@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Plant, PlantService } from '../plant.service';
+import { PlantService } from '../shared/plant.service';
+import { Plant } from '../shared/plant.model';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-to-plant',
@@ -8,49 +10,21 @@ import { Plant, PlantService } from '../plant.service';
   styleUrls: ['./to-plant.component.css'],
 })
 export class ToPlantComponent implements OnInit {
-  constructor(private plantService: PlantService) {}
+  @ViewChild('f') toPlantForm: NgForm;
+  defaultSeason = 'Spring';
+  plants: Plant[] = [];
+  submitted = false;
+
+  constructor(private plantService: PlantService,
+              private dataStorageService: DataStorageService) {}
 
   ngOnInit(): void {
     this.plants = this.plantService.getToPlant()
-    this.plantService.toPlantChanged.subscribe(plants => {
-      this.plants = plants
+    this.plantService.plantSubject.subscribe(plants => {
+      this.plants = this.plantService.getToPlant()
     })
   }
-  title = 'to-plant';
-  @ViewChild('f') toPlantForm: NgForm;
-  defaultSeason = 'Spring';
-  // plant = {
-  //   seedname: '',
-  //   amount: '',
-  //   weeks: '',
-  //   season: '',
-  //   planted: false,
-  // };
-  plants: Plant[] = [
-  //   {
-  //     seedname: 'broccoli',
-  //     amount: '10',
-  //     weeks: '10',
-  //     season: 'Spring',
-  //     planted: false,
-  //   },
-  //   {
-  //     seedname: 'tomato',
-  //     amount: '10',
-  //     weeks: '20',
-  //     season: 'Summer',
-  //     planted: false,
-  //   },
-  //   {
-  //     seedname: 'pumpkin',
-  //     amount: '10',
-  //     weeks: '30',
-  //     season: 'Fall',
-  //     planted: false,
-  //   },
-   ];
 
-  submitted = false;
   onSubmit() {
     console.log(this.plants[0]);
     this.submitted = true;
@@ -66,13 +40,13 @@ export class ToPlantComponent implements OnInit {
       season: plant.season,
       planted: false,
     });
+    this.dataStorageService.onPostPlant()
     this.toPlantForm.reset();
   }
 
   onMove(i) {
     let plant = this.plants[i];
     plant.planted = true;
-    this.plantService.onPlanted(plant);
     this.onDelete(i);
   }
 
@@ -83,4 +57,5 @@ export class ToPlantComponent implements OnInit {
   onClear() {
     this.plants = [];
   }
+
 }

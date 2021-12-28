@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { PlantResolverService } from './plant-resolver.service';
+import { PlantResolverService } from './shared/plant-resolver.service';
 import { PlantedComponent } from './planted/planted.component';
 import { ToPlantComponent } from './to-plant/to-plant.component';
 
