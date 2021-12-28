@@ -16,12 +16,12 @@
     <li class="nav-link" *ngIf="!isAuthenticated">
       <a class="nav-link active" routerLink="/auth" routerLinkActive="active">Login</a>
     </li>
-      <li class="nav-item" *ngIf="isAuthenticated">
-      <a class="nav-link active" routerLink="/auth" routerLinkActive="active">Logout</a>
+      <li class="nav-item" *ngIf="isAuthenticated" (click)="onLogout()">
+      <a class="nav-link active"  style="cursor: pointer" routerLink="/auth" routerLinkActive="active">Logout</a>
     </li>
     </div>
 </nav>
-<div class="container">
+<div class="container" *ngIf="!isAuthenticated">
   <div class="row">
   <img src="https://aquariuswaterconditioning.com/wp-content/uploads/2018/11/watering-plants.jpg" alt="plants" class="img-responsive"
           style="max-height: 100px; text-align: left; margin-right: 10px; margin-top: 10px; margin-bottom: 10px" />

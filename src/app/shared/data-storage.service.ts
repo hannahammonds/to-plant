@@ -25,19 +25,12 @@ export class DataStorageService {
   }
 
   fetchPlants() {
-    return this.authService.user.pipe(
-      take(1),
-      exhaustMap((user) => {
         return this.http.get<Plant[]>(
-          'https://to-plant-default-rtdb.firebaseio.com/posts.json',
-          {
-            params: new HttpParams().set('auth', user.token),
-          }
-        );
-      }),
-      tap((plants) => {
-        this.plantService.setPlants(plants);
-      })
-    );
+          'https://to-plant-default-rtdb.firebaseio.com/posts.json', {
+          } ).pipe (
+            tap(plants => {
+              this.plantService.setPlants(plants)
+            })
+          )
   }
 }
