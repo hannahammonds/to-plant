@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: green">
+  <a class="navbar-brand" routerLink="/" href="#">Plant App</a>
+    <div class="navbar-nav">
+      <li class="nav-item" *ngIf="isAuthenticated">
+        <a class="nav-link active" routerLink="/to-plant" routerLinkActive="active">To Be Planted <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthenticated">
+      <a class="nav-link active" routerLink="/planted" routerLinkActive="active">Has Been Planted</a>
+    </li>
+    <!-- <li class="nav-item" *ngIf="isAuthenticated">
+      <a class="dropdown-item" (click)="onSaveData()" style="cursor: pointer">Save Data</a>
+    </li>
+    <li class="nav-item" *ngIf="isAuthenticated">
+      <a class="dropdown-item" (click)="onFetchData()" style="cursor: pointer">Fetch Data</a>
+    </li> -->
+    <li class="nav-link" *ngIf="!isAuthenticated">
+      <a class="nav-link active" routerLink="/auth" routerLinkActive="active">Login</a>
+    </li>
+      <li class="nav-item" *ngIf="isAuthenticated" (click)="onLogout()">
+      <a class="nav-link active"  style="cursor: pointer" routerLink="/auth" routerLinkActive="active">Logout</a>
+    </li>
+    </div>
+</nav>
+<div class="container" *ngIf="!isAuthenticated">
+  <div class="row">
+  <img src="https://aquariuswaterconditioning.com/wp-content/uploads/2018/11/watering-plants.jpg" alt="plants" class="img-responsive"
+          style="max-height: 100px; text-align: left; margin-right: 10px; margin-top: 10px; margin-bottom: 10px" />
+          <h1>Know When to Plant 'Em</h1>
+        </div>
+        <div class="row">
+          <h5>App to help you make a list of everything you have always wanted to plant in your garden and also helps you keep track of which season to plant them in.</h5>
+        </div>
+</div>
