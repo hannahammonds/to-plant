@@ -7,12 +7,12 @@
       <li class="nav-item" *ngIf="isAuthenticated">
       <a class="nav-link active" routerLink="/planted" routerLinkActive="active">Has Been Planted</a>
     </li>
-    <li class="nav-item" *ngIf="isAuthenticated">
+    <!-- <li class="nav-item" *ngIf="isAuthenticated">
       <a class="dropdown-item" (click)="onSaveData()" style="cursor: pointer">Save Data</a>
     </li>
     <li class="nav-item" *ngIf="isAuthenticated">
       <a class="dropdown-item" (click)="onFetchData()" style="cursor: pointer">Fetch Data</a>
-    </li>
+    </li> -->
     <li class="nav-link" *ngIf="!isAuthenticated">
       <a class="nav-link active" routerLink="/auth" routerLinkActive="active">Login</a>
     </li>

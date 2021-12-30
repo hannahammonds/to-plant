@@ -34,13 +34,17 @@ export class AuthComponent implements OnInit {
     } else {
       authObs = this.authService.signup(email, password);
       }
+
       authObs.subscribe(
         (resData) => {
           console.log(resData)
+
           this.router.navigate(['/to-plant']);
         },(error) => {
           console.log(error);
           this.error = "An error occured!";
+        }, () =>{
+          console.log('completed')
         }
       );
 }

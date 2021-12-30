@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { DataStorageService } from './data-storage.service';
 import { Plant } from './plant.model';
 
 @Injectable({ providedIn: 'root' })
@@ -8,29 +7,7 @@ export class PlantService {
 
   public plantSubject: Subject<Plant[]> = new Subject();
 
-  private plants: Plant[] = [
-    {
-      seedname: 'broccoli',
-      amount: 50,
-      weeks: 30,
-      season: 'spring',
-      planted: false,
-    },
-    {
-      seedname: 'potatoes',
-      amount: 50,
-      weeks: 30,
-      season: 'spring',
-      planted: true,
-    },
-    {
-      seedname: 'hash browns',
-      amount: 50,
-      weeks: 30,
-      season: 'spring',
-      planted: false,
-    },
-  ];
+  private plants: Plant[] = [];
 
   onPlant(plant) {
     this.plants.push(plant);

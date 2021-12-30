@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-
- 
+  constructor(private authService: AuthService) {}
+  ngOnInIt() {
+    this.authService.autoLogin();
+  }
 }
 

@@ -5,19 +5,40 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PlantResolverService } from './shared/plant-resolver.service';
 import { PlantedComponent } from './planted/planted.component';
 import { ToPlantComponent } from './to-plant/to-plant.component';
+import { AuthGaurd } from './auth/auth-gaurd';
 
 const routes: Routes = [
-  { path: 'planted', component: PlantedComponent },
-  { path: 'to-plant', component: ToPlantComponent },
-  { path: 'nav-bar', component: NavBarComponent },
-  { path: 'auth', component: AuthComponent },
-  { path: 'id', component: ToPlantComponent, resolve: [PlantResolverService] },
-  { path: 'id/edit', component: PlantedComponent, resolve: [PlantResolverService]},
-
+  {
+    path: 'planted',
+    component: PlantedComponent,
+    canActivate: [AuthGaurd],
+    children: [],
+  },
+  {
+    path: 'to-plant',
+    component: ToPlantComponent,
+  },
+  {
+    path: 'nav-bar',
+    component: NavBarComponent,
+  },
+  {
+    path: 'auth',
+    component: AuthComponent
+  },
+  {
+    path: 'id', component: ToPlantComponent,
+    resolve: [PlantResolverService]
+  },
+  {
+    path: 'id/edit',
+    component: PlantedComponent,
+    resolve: [PlantResolverService],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
