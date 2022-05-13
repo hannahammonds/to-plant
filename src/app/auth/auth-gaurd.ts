@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 @Injectable({ providedIn: 'root' })
 export class AuthGaurd implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -20,8 +21,9 @@ export class AuthGaurd implements CanActivate {
     return this.authService.user.pipe(take(1),
       map((user) => {
         console.log("user", user)
-        const isAuth = !!user;
-        if (isAuth) {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData || user) {
+          this.authService.autoLogin();
           return true;
         } else {
           return this.router.createUrlTree(['/auth']);

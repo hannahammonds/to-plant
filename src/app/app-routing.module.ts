@@ -6,6 +6,7 @@ import { PlantResolverService } from './shared/plant-resolver.service';
 import { PlantedComponent } from './planted/planted.component';
 import { ToPlantComponent } from './to-plant/to-plant.component';
 import { AuthGaurd } from './auth/auth-gaurd';
+import { SessionGuard } from './shared/auth/session.guard';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
   {
     path: 'to-plant',
     component: ToPlantComponent,
+    canActivate: [AuthGaurd],
   },
   {
     path: 'nav-bar',
@@ -24,6 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'auth',
+    canActivate: [SessionGuard],
     component: AuthComponent
   },
   {

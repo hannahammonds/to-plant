@@ -12,6 +12,7 @@ import { AuthResponseData, AuthService } from './auth.service';
 export class AuthComponent implements OnInit {
   isLoginMode = true;
   error: string = null;
+  msg: string = null;
 
   constructor( private authService: AuthService, private router: Router) { }
   ngOnInit(): void {}
@@ -40,16 +41,17 @@ export class AuthComponent implements OnInit {
       }
 
       authObs.subscribe(
-        (resData) => {
-          console.log("SUCCESSFULL RESPONSE", resData)
+        (res) => {
+          console.log("SUCCESSFULL RESPONSE", res);
+          if (this.error) this.error = null;
 
-          this.router.navigate(['/to-plant']);
-        },(error) => {
-          console.log(error);
-          this.error = "An error occured!";
-        }, () =>{
-          console.log('completed')
+          if (this.isLoginMode) {
+            this.router.navigate(['/to-plant']);
+          }else {
+            this.msg = "Thank you for siging up! Please login."
+            this.isLoginMode = true;
+          }
         }
-      );
-}
+      )
+  }
 }
