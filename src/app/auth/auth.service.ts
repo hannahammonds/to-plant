@@ -27,22 +27,11 @@ export class AuthService {
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-          environment.firebaseKey,
-        { email: email, password: password, returnSecureToken: true }
+        'https://to-plant-api.herokuapp.com/api/v1/users/create',
+        { email: email, password: password }
       )
-      .pipe(
-        tap((res) => {
-          console.log(res);
-          this.handleAuthentication(
-            res.email,
-            res.localId,
-            res.idToken,
-            res.expiresIn
-          );
-        })
-      );
   }
+
   private handleAuthentication(
     email: string,
     userId: string,
@@ -50,31 +39,32 @@ export class AuthService {
     expiresIn: number
   ) {
     console.log('handle auth');
-    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    //Getting the date of the token
+    const expirationDate = new Date(new Date().getTime() + expiresIn);
+
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
-    this.autoLogout(expiresIn * 1000);
+    this.autoLogout(expiresIn);
     localStorage.setItem('userData', JSON.stringify(user));
   }
+  
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-          environment.firebaseKey,
-        { email: email, password: password, returnSecureToken: true }
+        'https://to-plant-api.herokuapp.com/api/v1/users/login',
+        { email: email, password: password }
       )
       .pipe(
-        tap((res) =>
-          this.handleAuthentication(
-            res.email,
-            res.localId,
-            res.idToken,
-            res.expiresIn
-          )
-        )
-      );
+        tap((res:any) => {
+          const { expiry, value } = res.payload.token;
+          const { email, id } = res.payload.user;
+          const expiresIn = new Date(expiry).getTime() - Date.now();
+          this.handleAuthentication(email, id, value, +expiresIn);
+        })
+      )
   }
   logout() {
+    console.log("LOGOUT")
     this.user.next(null);
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');

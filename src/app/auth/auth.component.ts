@@ -21,11 +21,15 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+  // if the form is invalid, return
     if(!form.valid){
       return;
     }
+
+    //get email and password
     const email = form.value.email;
     const password = form.value.password;
+    // defining an observable
     let authObs: Observable<AuthResponseData>;
 
     if (this.isLoginMode) {
@@ -37,7 +41,7 @@ export class AuthComponent implements OnInit {
 
       authObs.subscribe(
         (resData) => {
-          console.log(resData)
+          console.log("SUCCESSFULL RESPONSE", resData)
 
           this.router.navigate(['/to-plant']);
         },(error) => {

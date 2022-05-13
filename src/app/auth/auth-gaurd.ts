@@ -19,6 +19,7 @@ export class AuthGaurd implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean | UrlTree> {
     return this.authService.user.pipe(take(1),
       map((user) => {
+        console.log("user", user)
         const isAuth = !!user;
         if (isAuth) {
           return true;
