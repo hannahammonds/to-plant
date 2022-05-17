@@ -13,6 +13,7 @@ const routes: Routes = [
     path: 'planted',
     component: PlantedComponent,
     canActivate: [AuthGaurd],
+    resolve: [PlantResolverService],
     children: [],
   },
   {
@@ -31,12 +32,11 @@ const routes: Routes = [
   },
   {
     path: 'id', component: ToPlantComponent,
-    resolve: [PlantResolverService]
+
   },
   {
     path: 'id/edit',
     component: PlantedComponent,
-    resolve: [PlantResolverService],
   },
 ];
 

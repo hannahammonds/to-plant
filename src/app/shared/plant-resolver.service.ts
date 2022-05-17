@@ -13,7 +13,7 @@ export class PlantResolverService implements Resolve<Plant[]> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
       const plants = this.plantService.getPlants()
-      if(plants.length == 0){
+      if(plants.length === 0){
         return this.dataStorageService.fetchPlants();
       } else {
         return plants

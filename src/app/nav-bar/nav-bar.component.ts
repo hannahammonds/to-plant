@@ -23,18 +23,10 @@ export class NavBarComponent implements OnInit {
     });
   }
 
-  onSaveData() {
-    this.dataStorageService.onPostPlant();
-  }
-
-  onFetchData() {
-    this.dataStorageService.fetchPlants().subscribe();
-  }
-
   ngOnDestroy() {
     this.userSub.unsubscribe();
   }
-  
+
   onLogout() {
     this.authService.logout();
   }

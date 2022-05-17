@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { DataStorageService } from '../shared/data-storage.service'
 
 export interface AuthResponseData {
   kind: string;
@@ -22,7 +22,7 @@ export class AuthService {
   private tokenExpirationTimer: any;
   token: string = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private dataStorageService: DataStorageService,  private router: Router) {}
 
   signup(email: string, password: string) {
     return this.http
@@ -44,10 +44,11 @@ export class AuthService {
 
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
+    //this.user.fetchPlants().subscribe();
     this.autoLogout(expiresIn);
     localStorage.setItem('userData', JSON.stringify(user));
   }
-  
+
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
@@ -63,36 +64,57 @@ export class AuthService {
         })
       )
   }
+
   logout() {
     console.log("LOGOUT")
-    this.user.next(null);
-    this.router.navigate(['/auth']);
-    localStorage.removeItem('userData');
-    if (this.tokenExpirationTimer) {
-      clearTimeout(this.tokenExpirationTimer);
+    this.http
+      .delete('https://to-plant-api.herokuapp.com/api/v1/users/logout')
+      .subscribe((res: any) => {
+        console.log('Logged out', res);
+        if (res.success) {
+          this.user.next(null);
+
+          localStorage.removeItem('userData');
+
+          if (this.tokenExpirationTimer) {clearTimeout(this.tokenExpirationTimer);
+
+          this.router.navigate(['auth']);
+          }
+      }}
+      );
     }
-    this.tokenExpirationTimer = null;
-  }
+
 
   autoLogin() {
+    // defining userData variable
     const userData: {
       email: string;
       id: string;
       _token: string;
       _tokenExpirationDate: string;
     } = JSON.parse(localStorage.getItem('userData'));
+
+    // const _tokenExpirationDate = ""
+    // conditional checks to see if userData exists
+
     if (!userData) {
       return;
     }
 
+    // defining loadedUser variable
     const loadedUser = new User(
       userData.email,
       userData.id,
       userData._token,
       new Date(userData._tokenExpirationDate)
     );
+
+    //conditional checks if token exists in loadedUser
     if (loadedUser.token) {
+      // updating the view, "loading" the user
       this.user.next(loadedUser);
+
+      // expiration duration
       const expirationDuration =
         new Date(userData._tokenExpirationDate).getTime() -
         new Date().getTime();
