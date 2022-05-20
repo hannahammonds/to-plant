@@ -19,7 +19,7 @@ export class ToPlantComponent implements OnInit {
               private dataStorageService: DataStorageService) {}
 
   ngOnInit(): void {
-   
+
     this.plants = this.plantService.getToPlant()
     this.plantService.plantSubject.subscribe(plants => {
       this.plants = this.plantService.getToPlant()
@@ -52,7 +52,7 @@ export class ToPlantComponent implements OnInit {
   }
 
   onDelete(i) {
-    this.plants.splice(i, 1);
+   
   }
 
   onClear() {
