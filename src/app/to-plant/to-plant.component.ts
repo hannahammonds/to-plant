@@ -34,15 +34,26 @@ export class ToPlantComponent implements OnInit {
     plant.amount = this.toPlantForm.value.amount;
     plant.weeks = this.toPlantForm.value.weeks;
     plant.season = this.toPlantForm.value.season;
+    plant.whenplanted = this.toPlantForm.value.whenplanted
+
     this.plantService.onPlant({
       seedname: plant.seedname,
       amount: plant.amount,
       weeks: plant.weeks,
       season: plant.season,
       planted: false,
+      whenplanted: plant.whenplanted 
     });
-    this.dataStorageService.onPostPlant()
+
     this.toPlantForm.reset();
+    this.dataStorageService.onPostPlant({
+      seedname: plant.seedname,
+      amount: plant.amount,
+      weeks: plant.weeks,
+      season: plant.season,
+      planted: false,
+      whenplanted: plant.whenplanted
+    });
   }
 
   onMove(i) {
@@ -51,8 +62,9 @@ export class ToPlantComponent implements OnInit {
     this.onDelete(i);
   }
 
-  onDelete(i) {
-   
+  onDelete(i:number) {
+    this.dataStorageService.deletePlant(i).subscribe();
+
   }
 
   onClear() {

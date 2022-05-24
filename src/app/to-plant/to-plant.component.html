@@ -48,6 +48,16 @@
         <option value="winter">Winter</option>
       </select>
     </div>
+    <div class="form-group">
+      <label>When Planted:</label>
+      <input
+        type="date"
+        id="date"
+        class="form-control"
+        ngModel
+        name="whenplanted"
+      />
+    </div>
     <button class="btn btn-success" type="submit" [disabled]="!f.valid">
       Add
     </button>
@@ -78,6 +88,11 @@
     </div>
     <div class="col-md-1">
     </div>
+    <div class="col-md-2">
+      <p>Date Planted:</p>
+    </div>
+    <div class="col-md-1">
+    </div>
   </div>
   <div *ngFor="let p of plants; let i = index">
     <div class="row">
@@ -92,6 +107,9 @@
       </div>
       <div class="col-md-2">
         <p>{{ p.season }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>{{ p.whenplanted }}</p>
       </div>
       <div class="col-md-1">
         <button type="button" class="btn btn-danger btn-small" (click)="onDelete(i)">Delete</button>

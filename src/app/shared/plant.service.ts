@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+
 import { Plant } from './plant.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class PlantService {
@@ -9,9 +11,12 @@ export class PlantService {
 
   private plants: Plant[] = [];
 
+
+
   onPlant(plant) {
     this.plants.push(plant);
     this.plantSubject.next(this.plants.slice());
+    
   }
 
   getPlants() {

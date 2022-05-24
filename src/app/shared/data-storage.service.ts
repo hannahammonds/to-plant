@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { PlantService } from './plant.service';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,13 +13,12 @@ export class DataStorageService {
     private plantService: PlantService,
   ) {}
 
-  onPostPlant() {
-    const plants = this.plantService.getPlants();
+  onPostPlant(plant) {
     return this.http.post(
       'https://to-plant-api.herokuapp.com/api/v1/plants',
-      plants
+      plant 
     ).subscribe((res: any) => {
-      this.plantService.onPlant(res.payload.plant)
+      console.log(res)
     });
   }
 
@@ -31,5 +31,9 @@ export class DataStorageService {
               this.plantService.setPlants(res.payload)
             })
           )
+  }
+
+  deletePlant(id) {
+    return this.http.delete('https://to-plant-api.herokuapp.com/api/v1/plants/${id}')
   }
 }
