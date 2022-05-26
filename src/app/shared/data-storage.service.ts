@@ -35,6 +35,6 @@ export class DataStorageService {
   }
 
   deletePlant(id) {
-    return this.http.delete('https://to-plant-api.herokuapp.com/api/v1/plants/${id}')
+    return this.http.delete(`https://to-plant-api.herokuapp.com/api/v1/plants/${id}`)
   }
 }
