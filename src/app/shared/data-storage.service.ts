@@ -14,9 +14,10 @@ export class DataStorageService {
   ) {}
 
   onPostPlant(plant) {
+    console.log("plant", plant)
     return this.http.post(
       'https://to-plant-api.herokuapp.com/api/v1/plants',
-      plant 
+      plant
     ).subscribe((res: any) => {
       console.log(res)
     });

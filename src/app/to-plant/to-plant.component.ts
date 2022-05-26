@@ -23,6 +23,8 @@ export class ToPlantComponent implements OnInit {
     this.plants = this.plantService.getToPlant()
     this.plantService.plantSubject.subscribe(plants => {
       this.plants = this.plantService.getToPlant()
+      console.log("plants from api", plants)
+      console.log("filterplants by false", this.plantService.getToPlant())
     })
   }
 
@@ -30,35 +32,35 @@ export class ToPlantComponent implements OnInit {
     console.log(this.plants[0]);
     this.submitted = true;
     const plant: any = {};
-    plant.seedname = this.toPlantForm.value.seedname;
+    plant.seed_name = this.toPlantForm.value.seed_name;
     plant.amount = this.toPlantForm.value.amount;
-    plant.weeks = this.toPlantForm.value.weeks;
-    plant.season = this.toPlantForm.value.season;
-    plant.whenplanted = this.toPlantForm.value.whenplanted
+    plant.weeks_to_mature = this.toPlantForm.value.weeks_to_mature;
+    plant.growing_season = this.toPlantForm.value.growing_season;
+    plant.when_planted = this.toPlantForm.value.when_planted
 
     this.plantService.onPlant({
-      seedname: plant.seedname,
+      seed_name: plant.seed_name,
       amount: plant.amount,
-      weeks: plant.weeks,
-      season: plant.season,
-      planted: false,
-      whenplanted: plant.whenplanted 
+      weeks_to_mature: plant.weeks_to_mature,
+      grwoing_season: plant.growing_season,
+      has_been_planted: false,
+      when_planted: plant.when_planted
     });
 
     this.toPlantForm.reset();
     this.dataStorageService.onPostPlant({
-      seedname: plant.seedname,
+      seed_name: plant.seed_name,
       amount: plant.amount,
-      weeks: plant.weeks,
-      season: plant.season,
-      planted: false,
-      whenplanted: plant.whenplanted
+      weeks_to_mature: plant.weeks_to_plant,
+      growing_season: plant.growing_season,
+      has_been_planted: false,
+      when_planted: plant.when_planted
     });
   }
 
   onMove(i) {
     let plant = this.plants[i];
-    plant.planted = true;
+    plant.has_been_planted = true;
     this.onDelete(i);
   }
 

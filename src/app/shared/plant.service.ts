@@ -16,7 +16,7 @@ export class PlantService {
   onPlant(plant) {
     this.plants.push(plant);
     this.plantSubject.next(this.plants.slice());
-    
+
   }
 
   getPlants() {
@@ -25,13 +25,13 @@ export class PlantService {
 
   getToPlant() {
     return this.plants.filter((plant) => {
-      return plant.planted == false;
+      return plant.has_been_planted == false;
     });
   }
 
   getPlanted() {
     return this.plants.filter((plant) => {
-      return plant.planted === true;
+      return plant.has_been_planted === true;
     });
   }
 

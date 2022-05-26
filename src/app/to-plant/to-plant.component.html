@@ -4,10 +4,10 @@
       <label>Seed Name:</label>
       <input
         type="text"
-        id="seedname"
+        id="seed_name"
         class="form-control"
         ngModel
-        name="seedname"
+        name="seed_name"
         required
         seedname
       />
@@ -28,19 +28,19 @@
       <label>Weeks to Maturity:</label>
       <input
         type="number"
-        id="weeks"
+        id="weeks_to_mature"
         class="form-control"
         ngModel
-        name="weeks"
+        name="weeks_to_mature"
       />
     </div>
     <div class="form-group">
       <label for="season">Ideal Growing Season:</label>
       <select
-        id="season"
+        id="growing_season"
         class="form-control"
         [ngModel]="defaultSeason"
-        name="season"
+        name="growing_season"
       >
         <option value="spring">Spring</option>
         <option value="summer">Summer</option>
@@ -52,10 +52,10 @@
       <label>When Planted:</label>
       <input
         type="date"
-        id="date"
+        id="when_planted"
         class="form-control"
         ngModel
-        name="whenplanted"
+        name="when_planted"
       />
     </div>
     <button class="btn btn-success" type="submit" [disabled]="!f.valid">
@@ -97,19 +97,19 @@
   <div *ngFor="let p of plants; let i = index">
     <div class="row">
       <div class="col-md-3">
-        <p style="cursor:pointer" (click)="onMove(i)">{{ p.seedname }}</p>
+        <p style="cursor:pointer" (click)="onMove(i)">{{ p.seed_name }}</p>
       </div>
       <div class="col-md-2">
         <p>{{ p.amount }}</p>
       </div>
       <div class="col-md-2">
-        <p>{{ p.weeks }}</p>
+        <p>{{ p.weeks_to_mature }}</p>
       </div>
       <div class="col-md-2">
-        <p>{{ p.season }}</p>
+        <p>{{ p.growing_season }}</p>
       </div>
       <div class="col-md-2">
-        <p>{{ p.whenplanted }}</p>
+        <p>{{ p.when_planted }}</p>
       </div>
       <div class="col-md-1">
         <button type="button" class="btn btn-danger btn-small" (click)="onDelete(i)">Delete</button>
