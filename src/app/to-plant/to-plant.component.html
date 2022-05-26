@@ -71,7 +71,7 @@
 <div class="container" *ngIf="plants.length != 0">
   <h4>Your List:</h4>
   <div>
-    <p>Got something in the ground? Hover over the seed name until a pointer appears and click to move it to your "Has Been Planted List" </p>
+    <p>Got something in the ground? Hover over the seed name and click to move it to your "Has Been Planted List" </p>
   </div>
   <div class="row">
     <div class="col-md-3">
@@ -112,7 +112,7 @@
         <p>{{ p.when_planted }}</p>
       </div>
       <div class="col-md-1">
-        <button type="button" class="btn btn-danger btn-small" (click)="onDelete(i)">Delete</button>
+        <button type="button" class="btn btn-danger btn-small" (click)="onDelete(i)">D</button>
       </div>
     </div>
   </div>
