@@ -23,6 +23,10 @@ export class PlantService {
     return this.plants.slice();
   }
 
+  getPlantById(id) {
+    return this.plants.find(plant => plant.id == id)
+  }
+
   getToPlant() {
     return this.plants.filter((plant) => {
       return plant.has_been_planted == false;
@@ -40,9 +44,6 @@ export class PlantService {
     this.plantSubject.next(this.plants.slice());
   }
 
-  getPlantById(id) {
-    return this.plants.find(plant => plant.id == id)
-  }
 
   onRemovePlant(id){
     // execute code ot remove plant

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PlantService } from '../shared/plant.service';
 import { Plant } from '../shared/plant.model';
@@ -59,10 +59,12 @@ export class ToPlantComponent implements OnInit {
     });
   }
 
-  onMove(id) {
-    let plant = this.plants[id];
-    plant.has_been_planted = true;
-    this.onDelete(id);
+  onMove(index) {
+    let updatedPlant = this.plants[index].has_been_planted = true;
+
+    //send update request
+    this.dataStorageService.updatePlant(updatedPlant).subscribe();
+    this.dataStorageService.updatePlant(index)
   }
 
   onDelete(id:number) {

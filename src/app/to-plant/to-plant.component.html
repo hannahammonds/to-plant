@@ -95,9 +95,9 @@
     </div>
   </div>
   <div *ngFor="let p of plants; let i = index">
-    <div class="row">
+    <div *ngIf="p.has_been_planted ==false" class="row">
       <div class="col-md-3">
-        <p style="cursor:pointer" (click)="onMove(p.id)">{{ p.seed_name }}</p>
+        <p style="cursor:pointer" (click)="onMove(i)">{{ p.seed_name }}</p>
       </div>
       <div class="col-md-2">
         <p>{{ p.amount }}</p>
