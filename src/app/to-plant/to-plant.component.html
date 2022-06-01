@@ -97,7 +97,7 @@
   <div *ngFor="let p of plants; let i = index">
     <div class="row">
       <div class="col-md-3">
-        <p style="cursor:pointer" (click)="onMove(i)">{{ p.seed_name }}</p>
+        <p style="cursor:pointer" (click)="onMove(p.id)">{{ p.seed_name }}</p>
       </div>
       <div class="col-md-2">
         <p>{{ p.amount }}</p>
@@ -112,7 +112,8 @@
         <p>{{ p.when_planted }}</p>
       </div>
       <div class="col-md-1">
-        <button type="button" class="btn btn-danger btn-small" (click)="onDelete(i)">D</button>
+        <!-- passing through the p.id instead of index  -->
+        <button type="button" class="btn btn-danger btn-small" (click)="onDelete(p.id)">D</button>
       </div>
     </div>
   </div>

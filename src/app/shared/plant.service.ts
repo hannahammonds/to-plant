@@ -39,6 +39,28 @@ export class PlantService {
     this.plants = plants;
     this.plantSubject.next(this.plants.slice());
   }
+
+  getPlantById(id) {
+    return this.plants.find(plant => plant.id == id)
+  }
+
+  onRemovePlant(id){
+    // execute code ot remove plant
+    // use filter to remove plant by id
+    // filter is a built in JavaScript method
+
+    console.log("filtered remove plants", this.plants.filter((plant)=> {
+      return plant.id!=id
+    }))
+    //new array with the id removed
+    this.plants = this.plants.filter((plant)=> {
+      return plant.id!=id
+    })
+    //subscribed to the plantSubject
+    //passed in getPlants() to get new array
+    //subject edits the view
+    this.plantSubject.next(this.getPlants())
+  }
 }
 
 

@@ -1,5 +1,6 @@
 export class Plant {
   constructor(
+    public id: number,
     public seed_name: string,
     public amount: number,
     public weeks_to_mature: number,

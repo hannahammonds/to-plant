@@ -51,21 +51,27 @@ export class ToPlantComponent implements OnInit {
     this.dataStorageService.onPostPlant({
       seed_name: plant.seed_name,
       amount: plant.amount,
-      weeks_to_mature: plant.weeks_to_plant,
+      weeks_to_mature: plant.weeks_to_mature,
       growing_season: plant.growing_season,
       has_been_planted: false,
       when_planted: plant.when_planted
+
     });
   }
 
-  onMove(i) {
-    let plant = this.plants[i];
+  onMove(id) {
+    let plant = this.plants[id];
     plant.has_been_planted = true;
-    this.onDelete(i);
+    this.onDelete(id);
   }
 
-  onDelete(i:number) {
-    this.dataStorageService.deletePlant(i).subscribe();
+  onDelete(id:number) {
+    this.dataStorageService.deletePlant(id).subscribe((res)=>{
+      console.log(res)
+// call onRemovePlant to change the view
+      this.plantService.onRemovePlant(id)
+    });
+
 
   }
 
