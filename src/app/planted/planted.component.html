@@ -1,24 +1,45 @@
 <div class="container">
-<div *ngFor="let p of plants; let i = index">
   <div class="row">
     <div class="col-md-3">
-      <p style="cursor: pointer">
-        Seed Name: {{ p.seed_name }}
-      </p>
+      <p><b>Seed Name:</b></p>
     </div>
     <div class="col-md-2">
-      <p>Amount: {{ p.amount }}</p>
+      <p><b>Amount:</b></p>
     </div>
     <div class="col-md-2">
-      <p>Maturity: {{ p.weeks_to_mature }}</p>
+      <p><b>Maturity: </b></p>
     </div>
     <div class="col-md-2">
-      <p>Season: {{ p.growing_season }}</p>
+      <p><b>Season:</b></p>
     </div>
     <div class="col-md-1">
     </div>
     <div class="col-md-2">
-      <p>Planted On: {{ p.when_planted }}</p>
+      <p><b>Planted On: </b></p>
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+
+  <div *ngFor="let p of plants; let i = index">
+  <div class="row">
+    <div class="col-md-3">
+      <p>{{ p.seed_name }}
+      </p>
+    </div>
+    <div class="col-md-2">
+      <p>{{ p.amount }}</p>
+    </div>
+    <div class="col-md-2">
+      <p>{{ p.weeks_to_mature }}</p>
+    </div>
+    <div class="col-md-2">
+      <p>{{ p.growing_season }}</p>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-2">
+      <p>{{ p.when_planted }}</p>
     </div>
     <div class="col-md-1">
     </div>

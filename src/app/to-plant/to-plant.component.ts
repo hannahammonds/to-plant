@@ -60,11 +60,9 @@ export class ToPlantComponent implements OnInit {
   }
 
   onMove(index) {
-    let updatedPlant = this.plants[index].has_been_planted = true;
-
+    this.plants[index].has_been_planted = true;
     //send update request
-    this.dataStorageService.updatePlant(updatedPlant).subscribe();
-    this.dataStorageService.updatePlant(index)
+    this.dataStorageService.updatePlant(this.plants[index]).subscribe();
   }
 
   onDelete(id:number) {

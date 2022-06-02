@@ -35,6 +35,7 @@ export class DataStorageService {
   }
 
   updatePlant(plant) {
+    console.log("update plant", plant.id, plant);
     return this.http.put(`https://to-plant-api.herokuapp.com/api/v1/plants/${plant.id}`, plant)
   }
 
